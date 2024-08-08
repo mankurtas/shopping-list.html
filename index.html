@@ -31,6 +31,47 @@
     </ul>
 
     <script>
+        const ul = document.querySelector('ul');
+        const input = document.querySelector('input');
+        const btn = document.querySelector('button');
+
+        btn.addEventListener('click', function(){
+            const newItem  = input.value;
+            // console.log(newItem);
+
+            const li = document.createElement('li')
+            const span = document.createElement('span')
+            const delBtn = document.createElement('button');
+
+            li.appendChild(span);
+
+            span.textContent = newItem;
+            delBtn.setAttribute('type', 'button');
+            delBtn.setAttribute('class', 'delButton');
+            delBtn.textContent = 'Delete';
+
+            li.appendChild(delBtn);
+
+            ul.appendChild(li)
+            input.value = '';
+
+            setupDeleteButtons();
+            input.focus();
+        })
+           
+        function setupDeleteButtons () {
+            const delButtons = document.querySelectorAll('button.delButton');
+
+            delButtons.forEach(function(button){
+                button.addEventListener('click', function(event){
+                    const listItem = this.parentElement;
+                    listItem.remove();
+                })
+            })
+        }
+
+        
+        
 
     </script>
   </body>
